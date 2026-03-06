@@ -148,12 +148,12 @@ export default function Home() {
 
           <div className="space-y-10 md:space-y-14">
             {[
-              ['Enterprise-grade', "Built by one guy in Dublin who couldn't stop coding on the bus."],
-              ['Seamless integration', "You hold a button and talk. It's not complicated. You'll manage."],
-              ['Game-changing AI', "It's Claude with a microphone and an attitude. Next question."],
-              ['Scalable architecture', 'It runs on Railway. The backend costs less than your Netflix subscription.'],
-              ['Industry-leading voice recognition', 'Deepgram. It works. We were surprised too.'],
-              ['Revolutionary mobile experience', "It's an app. On your phone. You talk to it. It codes. We didn't reinvent the wheel, we just made it roll somewhere stupid."],
+              ['Enterprise-grade', "Built by one Irish lad with mass-transit-induced psychosis and zero investors. Zero tests. One dream that should have died in 2022 but didn't because he missed his bus stop."],
+              ['Seamless integration', "You hold a button and talk. If you can't manage that, the app isn't the problem. You are. We say this with love. Mostly."],
+              ['Game-changing AI', "It's Claude with a microphone duct-taped on and a personality disorder we gave it on purpose. It's not sentient. It just sounds disappointed, like your father."],
+              ['Scalable architecture', "It runs on Railway. One instance. Less compute than your smart fridge. The backend costs less than the latte you bought to feel productive this morning."],
+              ['Industry-leading voice recognition', "Deepgram. It understood a drunk Dubliner on the 46A at 1am. If it can survive that, it can survive you."],
+              ['Revolutionary mobile experience', "It's an app. On your phone. You talk. It codes. We didn't cure cancer. We just made it possible to mass-produce technical debt from a toilet. You're welcome."],
             ].map(([buzzword, truth], i) => (
               <div key={i} className="text-center">
                 <p className="text-red line-through text-base md:text-lg tracking-wide mb-3">{buzzword}</p>
@@ -215,15 +215,17 @@ export default function Home() {
 
           <div className="space-y-5 md:space-y-6">
             {[
-              'Accidentally shipping features from a park bench',
-              'Your therapist asking "have you tried NOT coding on the bus?"',
-              'Missing your stop. Repeatedly.',
-              'Explaining to your manager that yes, the PR was written by talking to your phone',
-              'Turning a 20-minute walk into a sprint planning session',
-              "Your partner asking who you're whispering to at 11pm",
-              "An uncomfortable realization that you don't actually need your desk",
-              'Mild to severe inability to be present in any moment',
-              'Finishing things (rare but documented)',
+              'Mass-replying "in a meeting" while refactoring auth on the Luas',
+              'Your therapist diagnosing you with "terminal productivity"',
+              'Missing your stop so often the driver knows your repo name',
+              'Accidentally force-pushing to main during couples counselling',
+              '"Just one more commit" replacing actual human intimacy',
+              'Your dog thinking "good boy" means "merge conflict resolved"',
+              'Explaining to A&E that you walked into a pole while reviewing a diff',
+              'Your partner finding "localhost:3000" in your browser history and asking who she is',
+              'Losing custody of a houseplant because you forgot it exists',
+              'A Deepgram transcript of you whispering "deploy" at 3am being used as evidence',
+              'Finishing things (rare, undocumented, presumed hallucinatory)',
             ].map((effect, i) => (
               <p
                 key={i}
@@ -338,11 +340,12 @@ export default function Home() {
                 title: "While you're having sex:",
                 command: null,
                 lines: [
-                  "Look, we're not going to tell you what to do.",
-                  'But the average duration is 15 seconds.',
-                  "That's two API requests and a git push.",
-                  "We're not judging.",
-                  'The agent is.',
+                  "We both know you're not.",
+                  'But hypothetically.',
+                  "The session timeout is 15 minutes. You'll be done in 90 seconds.",
+                  "That's a full feature branch and a CI run.",
+                  "Your partner fakes it. Your tests don't.",
+                  'At least one of you ships tonight.',
                 ],
               },
             ].map((scenario, i) => (
@@ -371,52 +374,56 @@ export default function Home() {
 
           <div className="space-y-8 md:space-y-10">
             <div className="space-y-3">
-              <p className="text-text-bright text-xl md:text-2xl">You have 232 apps in production.</p>
-              <p className="text-text-bright text-xl md:text-2xl">3 paying users.</p>
-              <p className="text-text-bright text-xl md:text-2xl">$4.20 in monthly recurring revenue.</p>
-              <p className="text-text text-lg mt-4">Your mom is one of the paying users.</p>
-              <p className="text-text text-lg">She doesn&apos;t know how to cancel.</p>
+              <p className="text-text-bright text-xl md:text-2xl">You have 232 repos on GitHub.</p>
+              <p className="text-text-bright text-xl md:text-2xl">4 have READMEs. 1 has users.</p>
+              <p className="text-text-bright text-xl md:text-2xl">The user is you. From a different device. Testing.</p>
+              <p className="text-text text-lg mt-4">Your Stripe dashboard shows $4.20 MRR.</p>
+              <p className="text-text text-lg">That&apos;s your mom. She subscribed to be supportive.</p>
+              <p className="text-text text-lg">She doesn&apos;t know what the app does. Neither do you, really.</p>
             </div>
 
             <p
               className="text-amber text-2xl md:text-3xl lg:text-4xl font-medium leading-snug"
               style={{ textShadow: '0 0 40px rgba(245,158,11,0.15)' }}
             >
-              It is not the time to give up now, you absolute disaster of a human being.
+              Do not stop now, you catastrophically broken person.
             </p>
 
             <div className="space-y-2 text-lg text-text">
-              <p>You can always find friends.</p>
-              <p>You can always find a partner.</p>
-              <p>You can always have kids.</p>
-              <p className="text-text-dim">These things happen to people every day.</p>
+              <p>Love fades. Friendships drift. Children grow up and stop calling.</p>
+              <p>Your code doesn&apos;t care. Your code will never leave you.</p>
+              <p className="text-text-dim">Your code has no feelings, no expectations, no needs.</p>
+              <p className="text-text-dim">It is the only honest relationship you will ever have.</p>
             </div>
 
             <div className="space-y-2">
               <p className="text-text-bright text-xl md:text-2xl">But a dating app for blind dogs</p>
               <p className="text-text-bright text-xl md:text-2xl">will not build itself.</p>
+              <p className="text-text text-lg">And nobody else is going to build it either.</p>
+              <p className="text-text text-lg">Because it is a terrible idea. Yours. Specifically.</p>
             </div>
 
             <div className="space-y-2 text-lg text-text">
-              <p>And unlike friends, partners, and children,</p>
-              <p>your app is eternal.</p>
-              <p>It will still be throwing 500 errors</p>
-              <p>and crashing in production</p>
-              <p>long after you are dead.</p>
+              <p>Every person you have ever loved will eventually forget your name.</p>
+              <p>But your unhandled promise rejection on line 847</p>
+              <p>will be throwing errors in production</p>
+              <p>long after the heat death of your social life,</p>
+              <p>your marriage, and eventually the sun.</p>
             </div>
 
             <div className="space-y-2">
-              <p className="text-text text-lg">Your legacy isn&apos;t your relationships.</p>
+              <p className="text-text text-lg">Your legacy isn&apos;t the people who loved you.</p>
               <p className="text-text-bright text-xl md:text-2xl">
-                Your legacy is an unhandled promise rejection on a Tuesday.
+                Your legacy is a mass of spaghetti code that outlives them all.
               </p>
+              <p className="text-text text-lg">And that is beautiful. In a way nobody should examine too closely.</p>
             </div>
 
             <p
               className="text-green text-2xl md:text-3xl lg:text-4xl font-medium pt-4"
               style={{ textShadow: '0 0 40px rgba(57,255,20,0.2)' }}
             >
-              Make it count.
+              Ship it before the feeling passes.
             </p>
           </div>
 
@@ -601,15 +608,18 @@ export default function Home() {
 
           <div className="space-y-4 md:space-y-5">
             {[
-              'You have a healthy work-life balance',
-              'You enjoy commuting in silence without the urge to refactor something',
-              'You think "touch grass" means actually touching grass',
-              'You believe the best ideas come at a desk between 9 and 5',
-              "You've never started a side project at 11pm and abandoned it by 11:47pm",
-              'You think "the cloud" is something you see on your walk',
-              'Your git log has never contained the message "please work"',
-              'You\'ve never whispered "just one more commit" to yourself in the dark',
-              'You can sit on a bus for 40 minutes without thinking about code',
+              'You close your laptop at 18:00 like some kind of functioning adult',
+              'Your weekend contains activities that don\'t involve tailwind.config.js',
+              'You think "touch grass" means literally going outside and experiencing joy',
+              'You believe side projects should have users before you abandon them',
+              'You\'ve never mass-deleted node_modules in a fit of existential rage',
+              'Your git log has never contained the commit message "please work" or "I am begging"',
+              'You can sit on public transport without mentally refactoring something you saw on GitHub',
+              'You\'ve never whispered "just one more commit" to yourself in the dark like a prayer',
+              'You think 11pm is for sleeping and not for starting a project you\'ll abandon by 11:47pm',
+              'Your therapist has never paused mid-session to google what "deployed to prod" means',
+              'You have a hobby that doesn\'t require a package.json',
+              'You\'ve experienced a full 24 hours without checking if your CI pipeline passed',
             ].map((item, i) => (
               <p
                 key={i}
