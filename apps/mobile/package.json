@@ -1,0 +1,17 @@
+{
+  "name": "@timetorelax/mobile",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "echo \"Mobile build handled by EAS\"",
+    "dev": "echo \"Use 'npx expo start' directly\"",
+    "lint": "eslint . --ext .ts,.tsx --max-warnings 0",
+    "test": "echo \"No tests yet\""
+  },
+  "dependencies": {
+    "@timetorelax/shared": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  }
+}

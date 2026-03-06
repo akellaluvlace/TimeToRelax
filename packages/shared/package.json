@@ -1,0 +1,15 @@
+{
+  "name": "@timetorelax/shared",
+  "version": "0.0.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc --build",
+    "dev": "tsc --watch",
+    "lint": "eslint . --ext .ts --max-warnings 0",
+    "test": "echo \"No tests yet\""
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  }
+}

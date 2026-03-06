@@ -1,0 +1,17 @@
+{
+  "name": "@timetorelax/backend",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc --build",
+    "dev": "tsc --watch",
+    "lint": "eslint . --ext .ts --max-warnings 0",
+    "test": "echo \"No tests yet\""
+  },
+  "dependencies": {
+    "@timetorelax/shared": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  }
+}
