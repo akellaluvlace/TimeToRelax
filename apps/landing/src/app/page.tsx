@@ -143,10 +143,10 @@ export default function Home() {
 
       {/* ━━━ 2. CORPORATE BUZZWORD ROAST ━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <Section className="px-6 py-20 md:py-32 lg:py-40">
-        <div className="max-w-5xl mx-auto text-center">
+        <div className="max-w-3xl mx-auto text-center">
           <SectionLabel>{`// what we'd say if we had a marketing team`}</SectionLabel>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-7">
+          <div className="space-y-10 md:space-y-14">
             {[
               ['Enterprise-grade', "Built by one guy in Dublin who couldn't stop coding on the bus."],
               ['Seamless integration', "You hold a button and talk. It's not complicated. You'll manage."],
@@ -155,12 +155,9 @@ export default function Home() {
               ['Industry-leading voice recognition', 'Deepgram. It works. We were surprised too.'],
               ['Revolutionary mobile experience', "It's an app. On your phone. You talk to it. It codes. We didn't reinvent the wheel, we just made it roll somewhere stupid."],
             ].map(([buzzword, truth], i) => (
-              <div
-                key={i}
-                className="group border border-border bg-bg-raised/30 p-7 md:p-9 text-center hover:border-border-light hover:bg-bg-raised/50 transition-all duration-300"
-              >
-                <p className="text-red line-through text-base md:text-lg tracking-wide mb-4 font-normal">{buzzword}</p>
-                <p className="text-text-bright text-base md:text-lg leading-relaxed">{truth}</p>
+              <div key={i} className="text-center">
+                <p className="text-red line-through text-base md:text-lg tracking-wide mb-3">{buzzword}</p>
+                <p className="text-text-bright text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">{truth}</p>
               </div>
             ))}
           </div>
@@ -213,10 +210,10 @@ export default function Home() {
 
       {/* ━━━ 4. SIDE EFFECTS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <Section className="px-6 py-20 md:py-32 lg:py-40">
-        <div className="max-w-5xl mx-auto text-center">
+        <div className="max-w-2xl mx-auto text-center">
           <SectionLabel color="text-amber">{`! side effects`}</SectionLabel>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+          <div className="space-y-5 md:space-y-6">
             {[
               'Accidentally shipping features from a park bench',
               'Your therapist asking "have you tried NOT coding on the bus?"',
@@ -228,16 +225,16 @@ export default function Home() {
               'Mild to severe inability to be present in any moment',
               'Finishing things (rare but documented)',
             ].map((effect, i) => (
-              <div
+              <p
                 key={i}
-                className="border border-amber/15 bg-bg-raised/20 p-6 md:p-7 text-center text-base md:text-lg text-text hover:border-amber/40 hover:text-text-bright transition-all duration-300"
+                className="text-base md:text-lg text-text hover:text-text-bright transition-colors duration-300"
               >
                 {effect}
-              </div>
+              </p>
             ))}
           </div>
 
-          <div className="mt-10 md:mt-14 space-y-2">
+          <div className="mt-12 md:mt-16 space-y-2">
             <p className="text-base text-text-dim">Compatible with: insomnia, overconfidence, and public transit.</p>
             <p className="text-base text-text-dim">Not compatible with: healthy relationships, hobbies, or silence.</p>
           </div>
@@ -295,10 +292,10 @@ export default function Home() {
 
       {/* ━━━ 6. WHILE YOU'RE... ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <Section className="px-6 py-20 md:py-32 lg:py-40">
-        <div className="max-w-5xl mx-auto text-center">
+        <div className="max-w-3xl mx-auto text-center">
           <SectionLabel>{`// while you're...`}</SectionLabel>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6">
+          <div className="space-y-14 md:space-y-20">
             {[
               {
                 title: "While you're on the bus:",
@@ -349,13 +346,10 @@ export default function Home() {
                 ],
               },
             ].map((scenario, i) => (
-              <div
-                key={i}
-                className="group border border-border bg-bg-raised/20 p-6 md:p-8 text-center hover:border-cyan/30 hover:bg-bg-raised/40 transition-all duration-300"
-              >
+              <div key={i} className="text-center">
                 <p className="text-cyan font-medium text-lg md:text-xl mb-4">{scenario.title}</p>
                 {scenario.command && (
-                  <p className="text-green text-base md:text-lg mb-3 font-medium">{scenario.command}</p>
+                  <p className="text-green text-base md:text-lg mb-4 font-medium">{scenario.command}</p>
                 )}
                 <div className="space-y-1.5">
                   {scenario.lines.map((line, j) => (
@@ -491,55 +485,47 @@ export default function Home() {
 
       {/* ━━━ 9. THE STACK ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <Section className="px-6 py-20 md:py-32 lg:py-40">
-        <div className="max-w-5xl mx-auto text-center">
+        <div className="max-w-3xl mx-auto text-center">
           <SectionLabel>{`// the stack (for people who actually care)`}</SectionLabel>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="space-y-10 md:space-y-14">
             {[
               {
                 label: 'Voice',
                 value: 'Deepgram Nova-3 STT',
                 desc: "Sub-300ms latency. Handles your accent and the bus. Runs on our credits. You don't pay for this.",
-                accent: 'hover:border-green/40',
               },
               {
                 label: 'Brain',
                 value: 'Claude Agent SDK (Sonnet)',
                 desc: "Reads your repo. Writes code. Runs it. Fixes its own mistakes. Like a junior dev except it doesn't need praise or standup attendance. Runs on YOUR key.",
-                accent: 'hover:border-cyan/40',
               },
               {
                 label: 'Sandbox',
                 value: 'E2B Firecracker',
                 desc: 'Isolated cloud sandbox. Live preview. Spins up in 150ms. Dies after 15 minutes. Just like your motivation.',
-                accent: 'hover:border-amber/40',
               },
               {
                 label: 'Voice back',
                 value: 'Deepgram Aura-2 TTS',
                 desc: "Talks back. In character. With disappointment. Want worse? Upgrade to Grok Voice. Bring your xAI key. Get truly unhinged.",
-                accent: 'hover:border-purple/40',
               },
               {
                 label: 'Git',
                 value: 'One-tap push',
                 desc: 'Branch created. PR ready. Pushed to GitHub. "shipped from the toilet. no regrets. many bugs."',
-                accent: 'hover:border-red/40',
               },
             ].map((item, i) => (
-              <div
-                key={i}
-                className={`border border-border bg-bg-raised/30 p-6 md:p-8 text-center transition-all duration-300 ${item.accent} hover:bg-bg-raised/50`}
-              >
-                <p className="text-text-muted text-xs tracking-[0.3em] uppercase mb-3 font-normal">{item.label}</p>
-                <p className="text-green font-medium text-lg mb-3">{item.value}</p>
-                <p className="text-text text-base leading-relaxed">{item.desc}</p>
+              <div key={i} className="text-center">
+                <p className="text-text-muted text-xs tracking-[0.3em] uppercase mb-2">{item.label}</p>
+                <p className="text-green font-medium text-lg md:text-xl mb-2">{item.value}</p>
+                <p className="text-text text-base md:text-lg leading-relaxed max-w-xl mx-auto">{item.desc}</p>
               </div>
             ))}
           </div>
 
-          <div className="mt-10 md:mt-14 border border-border bg-bg-raised/20 p-7 md:p-9 max-w-xl mx-auto">
-            <p className="text-text-bright text-base mb-5 tracking-wide font-medium">Requirements:</p>
+          <div className="mt-14 md:mt-20 pt-10 border-t border-border max-w-xl mx-auto">
+            <p className="text-text-bright text-base mb-5 font-medium">Requirements:</p>
             <div className="space-y-2 text-text text-base">
               <p>Anthropic API key (you already have one, stop pretending)</p>
               <p>GitHub account (see above)</p>
@@ -554,13 +540,13 @@ export default function Home() {
 
       {/* ━━━ 10. WALL OF SHAME ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */}
       <Section className="px-6 py-20 md:py-32 lg:py-40">
-        <div className="max-w-5xl mx-auto text-center">
+        <div className="max-w-3xl mx-auto text-center">
           <SectionLabel color="text-purple">{`// wall of shame`}</SectionLabel>
-          <p className="text-text-dim text-base mb-10 md:mb-14">
+          <p className="text-text-dim text-base mb-12 md:mb-16">
             Real developers. Real locations. Real regret.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+          <div className="space-y-12 md:space-y-16">
             {[
               {
                 quote: "Deployed a hotfix from my daughter's dance recital. She'll understand when she's older. Or she won't. Either way, the bug is fixed.",
@@ -586,29 +572,21 @@ export default function Home() {
                 quote: "I told myself I was 'just checking the build status' on the bus. Forty minutes later I'd rewritten the auth module. I missed my stop. And the next one. And the one after that.",
                 who: '@anon — End of the line — Literally',
               },
+              {
+                quote: "I used TimeToRelax during a funeral. Not proud of it. But the deployment window was closing. Grandma would have understood. She was also a workaholic. That's probably genetic.",
+                who: '@anon — Back pew — Muted',
+              },
             ].map((item, i) => (
-              <div
-                key={i}
-                className="group border border-border bg-bg-raised/20 p-6 md:p-8 text-center hover:border-purple/30 hover:bg-bg-raised/40 transition-all duration-300"
-              >
-                <p className="text-purple/30 text-4xl leading-none mb-4">&ldquo;</p>
-                <p className="text-text text-base md:text-lg leading-relaxed italic">{item.quote}</p>
-                <p className="text-text-muted text-sm mt-5">{item.who}</p>
+              <div key={i} className="text-center">
+                <p className="text-text text-base md:text-lg leading-relaxed italic max-w-2xl mx-auto">
+                  &ldquo;{item.quote}&rdquo;
+                </p>
+                <p className="text-text-muted text-sm mt-4">{item.who}</p>
               </div>
             ))}
           </div>
 
-          {/* Standalone funeral quote */}
-          <div className="mt-5 md:mt-6 max-w-lg mx-auto border border-border bg-bg-raised/20 p-6 md:p-8 text-center hover:border-purple/30 hover:bg-bg-raised/40 transition-all duration-300">
-            <p className="text-purple/30 text-4xl leading-none mb-4">&ldquo;</p>
-            <p className="text-text text-base md:text-lg leading-relaxed italic">
-              I used TimeToRelax during a funeral. Not proud of it. But the deployment window was closing.
-              Grandma would have understood. She was also a workaholic. That&apos;s probably genetic.
-            </p>
-            <p className="text-text-muted text-sm mt-5">@anon — Back pew — Muted</p>
-          </div>
-
-          <p className="mt-10 md:mt-14 text-text-muted text-base tracking-wide">
+          <p className="mt-12 md:mt-16 text-text-muted text-base tracking-wide">
             #SendHelpItsTerminal #btwIShippedThisFromMyToilet
           </p>
         </div>
@@ -633,13 +611,13 @@ export default function Home() {
               'You\'ve never whispered "just one more commit" to yourself in the dark',
               'You can sit on a bus for 40 minutes without thinking about code',
             ].map((item, i) => (
-              <div
+              <p
                 key={i}
-                className="group py-2 text-lg md:text-xl text-text hover:text-text-bright transition-colors duration-300"
+                className="text-lg md:text-xl text-text hover:text-text-bright transition-colors duration-300"
               >
                 <span className="text-red font-bold mr-3">&#x2717;</span>
                 {item}
-              </div>
+              </p>
             ))}
           </div>
 
