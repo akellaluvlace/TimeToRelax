@@ -940,6 +940,8 @@ Format: `type(scope): lowercase description`
 - Don't write tests after the feature is "done". Write them alongside.
 - Don't merge without all automated checks passing.
 - Don't name files `utils.ts` or `helpers.ts` or `misc.ts`. Name them for what they actually do, with personality.
+- Don't use Playwright or browser automation tools unless explicitly asked by the user.
+- Don't add Co-Authored-By or co-signing lines to commits. Ever.
 
 ---
 

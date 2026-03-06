@@ -16,7 +16,7 @@
 
 | # | Step | Status | Started | Completed | Notes |
 |---|---|---|---|---|---|
-| 01 | Git Init & Monorepo Scaffold | not-started | | | |
+| 01 | Git Init & Monorepo Scaffold | complete | 2026-03-06 | 2026-03-06 | Pushed to github.com/akellaluvlace/TimeToRelax |
 | 02 | Shared Types Package | not-started | | | |
 | 03 | Backend Fastify Skeleton | not-started | | | |
 | 04 | Runtime Logger (dear-diary.ts) | not-started | | | |
@@ -82,3 +82,4 @@
 | Date | Session | Steps Touched | Notes |
 |---|---|---|---|
 | 2026-03-06 | Initial planning | 00 | Created build steps, design doc, updated CLAUDE.md |
+| 2026-03-06 | Step 01 implementation | 01 | Monorepo scaffold, pushed to GitHub. Remote: akellaluvlace/TimeToRelax |
