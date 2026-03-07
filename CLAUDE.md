@@ -860,9 +860,16 @@ API_BASE_URL_DEV=http://localhost:3000
 - OTA updates via `eas update` for JS-only changes (no native module changes)
 
 ### Landing Page (timetorelax.app)
-- Static site deployed to Vercel
-- Separate repo or `/apps/landing` in monorepo
-- No framework needed -- plain HTML/CSS with the cynical copy
+- Next.js 16 app in `apps/landing/`, deployed to Vercel
+- Vercel config: Root Directory = `apps/landing`, Framework = Next.js
+- Tailwind CSS v4 with `@tailwindcss/postcss` plugin
+- JetBrains Mono font (weights 300, 400, 500, 700)
+- Dark terminal aesthetic: `#06060a` bg, `#39ff14` green accent, `#dddde5` text
+- All custom CSS MUST be inside `@layer base {}` -- unlayered CSS overrides Tailwind v4 utilities
+- Components: `Section.tsx` (scroll-reveal via IntersectionObserver), `Terminal.tsx` (window chrome), `Cursor.tsx` (blinking)
+- 14 sections, clean text-only layout (no card boxes except Terminal chrome)
+- Full page copy also saved at `landing-content.md` (project root)
+- metadataBase: `https://timetorelax.app`
 
 ---
 
