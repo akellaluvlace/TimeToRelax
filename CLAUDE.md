@@ -867,7 +867,11 @@ API_BASE_URL_DEV=http://localhost:3000
 - Dark terminal aesthetic: `#06060a` bg, `#39ff14` green accent, `#dddde5` text
 - All custom CSS MUST be inside `@layer base {}` -- unlayered CSS overrides Tailwind v4 utilities
 - Components: `Section.tsx` (scroll-reveal via IntersectionObserver), `Terminal.tsx` (window chrome), `Cursor.tsx` (blinking)
-- 14 sections, clean text-only layout (no card boxes except Terminal chrome)
+- Logo: `//` in red (#ef4444) beside `TimeToRelax` in toxic green (#39ff14) with neon glow
+- Favicon/apple-icon: dynamic via `icon.tsx` and `apple-icon.tsx` (red `//` on dark bg, using `ImageResponse`)
+- Browser tab title: `// TimeToRelax`
+- 10 sections, clean text-only layout (no card boxes except Terminal chrome)
+- Hero CTA at absolute bottom: tagline "ship from inappropriate locations" (plain text), button says "SendHelpItsTerminal"
 - Full page copy also saved at `landing-content.md` (project root)
 - metadataBase: `https://timetorelax.app`
 

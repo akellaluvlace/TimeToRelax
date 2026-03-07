@@ -145,10 +145,7 @@ export default function Home() {
           className="absolute bottom-16 md:bottom-20 left-1/2 -translate-x-1/2 flex flex-col items-center gap-5 opacity-0"
           style={{ animation: 'fadeIn 0.8s ease-out 2.6s forwards' }}
         >
-          <p
-            className="text-text-dim text-sm tracking-[0.3em] uppercase"
-            style={{ animation: 'slow-blink 3s ease-in-out infinite' }}
-          >
+          <p className="text-text-dim text-sm tracking-[0.3em] uppercase">
             ship from inappropriate locations
           </p>
           <CTA>SendHelpItsTerminal</CTA>
