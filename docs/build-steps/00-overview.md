@@ -17,8 +17,8 @@
 | # | Step | Status | Started | Completed | Notes |
 |---|---|---|---|---|---|
 | 01 | Git Init & Monorepo Scaffold | complete | 2026-03-06 | 2026-03-06 | Pushed to github.com/akellaluvlace/TimeToRelax |
-| 02 | Shared Types Package | not-started | | | |
-| 03 | Backend Fastify Skeleton | not-started | | | |
+| 02 | Shared Types Package | complete | 2026-03-07 | 2026-03-07 | 6 type files, all exports verified from backend + mobile |
+| 03 | Backend Fastify Skeleton | complete | 2026-03-07 | 2026-03-07 | Fastify 5, CORS, rate-limit, health route, error handler, 6 tests pass |
 | 04 | Runtime Logger (dear-diary.ts) | not-started | | | |
 | 05 | SSE Streaming (the-void.ts) | not-started | | | |
 | 06 | Personality Engine (denial-engine.ts) | not-started | | | |
@@ -34,7 +34,7 @@
 | 16 | Ship Flow (commit, push, PR) | not-started | | | |
 | 17 | Session Resilience & Reconnection | not-started | | | |
 | 18 | Grok Voice Upgrade Path | not-started | | | |
-| 19 | Landing Page (timetorelax.app) | not-started | | | |
+| 19 | Landing Page (timetorelax.app) | complete | 2026-03-06 | 2026-03-06 | Next.js 16 on Vercel, timetorelax.app |
 | 20 | Polish, Onboarding & Launch Prep | not-started | | | |
 
 ## Dependency Graph
@@ -83,3 +83,6 @@
 |---|---|---|---|
 | 2026-03-06 | Initial planning | 00 | Created build steps, design doc, updated CLAUDE.md |
 | 2026-03-06 | Step 01 implementation | 01 | Monorepo scaffold, pushed to GitHub. Remote: akellaluvlace/TimeToRelax |
+| 2026-03-06 | Landing page | 19 | Next.js 16 landing page, deployed to Vercel at timetorelax.app |
+| 2026-03-07 | Step 02 implementation | 02 | Shared types: session, events, voice, errors, api, personality. All compile clean. |
+| 2026-03-07 | Step 03 implementation | 03 | Fastify skeleton: app factory, config, health route, error handler, Dockerfile. 6/6 tests pass. |
