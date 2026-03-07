@@ -9,20 +9,20 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'TimeToRelax — SendHelpItsTerminal',
+  title: '// TimeToRelax',
   description:
     'Voice-first coding agent for your phone. No laptop. No keyboard. No peace. Ship from the bus.',
   metadataBase: new URL('https://timetorelax.app'),
   openGraph: {
-    title: '$ timetorelax — SendHelpItsTerminal',
-    description: '> You had one escape left. > We fixed that. > You\'re welcome.',
+    title: '// TimeToRelax',
+    description: 'You could be present. Instead you\'re whispering code to your phone on a packed bus.',
     url: 'https://timetorelax.app',
-    siteName: 'TimeToRelax',
+    siteName: '// TimeToRelax',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: '$ timetorelax — SendHelpItsTerminal',
+    title: '// TimeToRelax',
     description: 'Voice-first coding from your phone. No laptop. No peace.',
   },
   other: {
