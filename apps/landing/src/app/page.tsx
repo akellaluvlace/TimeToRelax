@@ -93,13 +93,6 @@ export default function Home() {
         <div className="relative z-10 max-w-3xl">
           <Logo />
 
-          <p
-            className="text-text-dim text-sm tracking-[0.4em] uppercase font-normal mb-14 md:mb-20 opacity-0"
-            style={{ animation: 'fadeIn 0.8s ease-out 0.3s forwards' }}
-          >
-            SendHelpItsTerminal
-          </p>
-
           {[
             'You could be present.',
             "Instead you're whispering code to your phone on a packed bus.",
@@ -146,21 +139,19 @@ export default function Home() {
             </p>
           </div>
 
-          <div
-            className="mt-10 md:mt-14 opacity-0"
-            style={{ animation: 'fadeIn 0.8s ease-out 2.6s forwards' }}
-          >
-            <CTA>Start shipping from inappropriate locations</CTA>
-          </div>
         </div>
 
         <div
-          className="absolute bottom-8 md:bottom-10 left-1/2 -translate-x-1/2 text-text-muted text-xs tracking-[0.3em] uppercase opacity-0"
-          style={{ animation: 'fadeIn 1s ease-out 3.2s forwards' }}
+          className="absolute bottom-16 md:bottom-20 left-1/2 -translate-x-1/2 flex flex-col items-center gap-5 opacity-0"
+          style={{ animation: 'fadeIn 0.8s ease-out 2.6s forwards' }}
         >
-          <span style={{ animation: 'scroll-hint 2.5s ease-in-out infinite' }} className="inline-block">
-            scroll
-          </span>
+          <p
+            className="text-text-dim text-sm tracking-[0.3em] uppercase"
+            style={{ animation: 'slow-blink 3s ease-in-out infinite' }}
+          >
+            ship from inappropriate locations
+          </p>
+          <CTA>SendHelpItsTerminal</CTA>
         </div>
       </Section>
 

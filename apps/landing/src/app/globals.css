@@ -84,7 +84,7 @@
   50% { opacity: 0.14; transform: scale(1.08); }
 }
 
-@keyframes scroll-hint {
-  0%, 100% { transform: translateY(0); opacity: 0.3; }
-  50% { transform: translateY(8px); opacity: 0.6; }
+@keyframes slow-blink {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 0.2; }
 }
