@@ -41,12 +41,19 @@ export function craftDisapproval(
 ): string {
   const stateTemplates = templates[state];
 
+  // TypeScript's noUncheckedIndexedAccess doesn't trust anyone
+  // and neither do we. Guard early, judge later.
+  if (!stateTemplates || stateTemplates.length === 0) {
+    log.error({ state }, 'no templates found for state. the jukebox is empty.');
+    return 'Something unexpected happened. We refuse to elaborate.';
+  }
+
   // Pick a random template. Math.random is fine here.
   // We're selecting quips, not generating cryptographic keys.
   const index = Math.floor(Math.random() * stateTemplates.length);
   const selected = stateTemplates[index];
 
-  // This should never happen if the templates file is valid,
+  // This should never happen after the length check above,
   // but TypeScript doesn't trust anyone and neither do we
   if (selected === undefined) {
     log.error({ state, index, templateCount: stateTemplates.length }, 'template selection failed');

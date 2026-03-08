@@ -16,7 +16,9 @@ COPY apps/backend/src ./apps/backend/src
 
 RUN npm ci --workspace=@timetorelax/shared --workspace=@timetorelax/backend
 
-RUN npx turbo run build --filter=@timetorelax/backend
+# Build shared first, then backend. No turbo needed in Docker.
+# tsc --build follows the project references in tsconfig.json.
+RUN npm run build --workspace=@timetorelax/shared && npm run build --workspace=@timetorelax/backend
 
 # -- Production stage --
 FROM node:22-slim AS runner
