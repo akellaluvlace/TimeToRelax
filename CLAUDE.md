@@ -464,11 +464,12 @@ All build steps live in `docs/build-steps/`. **Start every agent session by read
 | Step files (01-20) | `docs/build-steps/01-monorepo-scaffold.md` through `20-polish-launch.md` |
 | Design doc | `docs/plans/2026-03-06-build-steps-and-logging-design.md` |
 
+**All 20 build steps are complete as of 2026-03-08.** 277 backend + 193 mobile = 470 tests.
+
 When starting work:
-1. Read `docs/build-steps/00-overview.md` -- check status dashboard, dependency graph
-2. Pick the next not-started step whose dependencies are complete
-3. Update the step's status to `in-progress` and log the session
-4. When done, update step status to `complete` and log completion date
+1. Read `docs/build-steps/00-overview.md` -- check status dashboard
+2. For new work: create a new step or work outside the step framework
+3. Update the overview when making architectural changes
 
 ### Runtime Logging
 
@@ -616,6 +617,27 @@ npx expo export --platform android --dry-run
 
 ---
 
+## Build System
+
+### Backend Build
+- `npm run build` in backend: builds shared package first, then backend via `tsc --build`
+- Backend tsconfig: `rootDir: "./src"`, `include: ["src"]` (tests excluded from build, vitest handles them)
+- Backend tsconfig has `references` to `../../packages/shared`
+- Output: `apps/backend/dist/` (flat, not nested under `dist/src/`)
+- Start: `node dist/i-can-stop-anytime.js`
+
+### Shared Package Build
+- `npm run build` in shared: `tsc --build`
+- Must be built BEFORE backend (backend imports types from `@timetorelax/shared`)
+- Output: `packages/shared/dist/` (JS + `.d.ts` declarations)
+
+### Gotcha: Stale tsbuildinfo
+- `tsc --build` uses `tsconfig.tsbuildinfo` to skip unnecessary rebuilds
+- If `dist/` is deleted but `tsbuildinfo` exists, tsc thinks output is up-to-date and skips the build
+- Fix: delete `tsconfig.tsbuildinfo` to force rebuild
+
+---
+
 ## Tool & Plugin Configuration
 
 ESLint, Prettier, and TypeScript configs live in their respective config files at the repo root and in each app. Key rules enforced:
@@ -645,9 +667,16 @@ See `.env.example` files in `apps/backend/` and `apps/mobile/` for required/opti
 
 ### Backend (Railway)
 - Auto-deploy from `main` branch
-- Dockerfile-based deployment
+- Railway uses **Railpack** auto-detection by default (NOT the Dockerfile)
+- Railpack runs: `npm run build --workspace=@timetorelax/backend`
+- Backend build script builds shared first: `tsc --build ../../packages/shared/tsconfig.json && tsc --build`
+- To use the Dockerfile instead: set Dockerfile path to `apps/backend/Dockerfile` in Railway settings
 - Health check: `GET /health` returns `{ status: "alive", version: "x.x.x" }`
-- Environment variables set in Railway dashboard, not in repo
+- Environment variables set in Railway dashboard, not in repo:
+  - `PORT` (default 3000)
+  - `GITHUB_CLIENT_ID` + `GITHUB_CLIENT_SECRET` (from GitHub OAuth App)
+  - `DEEPGRAM_API_KEY` (from deepgram.com)
+  - `E2B_API_KEY` (from e2b.dev)
 - Minimum: 1 instance, 512MB RAM, 1 vCPU
 - No sleep/scale-to-zero -- sessions are long-lived
 
