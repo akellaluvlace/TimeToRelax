@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc --build",
+    "build": "tsc --build ../../packages/shared/tsconfig.json && tsc --build",
     "dev": "tsx watch src/i-can-stop-anytime.ts",
     "start": "node dist/i-can-stop-anytime.js",
     "lint": "eslint . --ext .ts --max-warnings 0",
