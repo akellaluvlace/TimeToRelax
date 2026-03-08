@@ -8,6 +8,7 @@ import sensible from '@fastify/sensible';
 
 import { facePalm } from './middleware/face-palm.js';
 import vitalSigns from './routes/vital-signs.js';
+import theVoidRoute from './routes/the-void-route.js';
 import type { BackendConfig } from './config.js';
 import { spawnDiary } from './services/dear-diary.js';
 
@@ -39,6 +40,7 @@ export async function buildApp(config: BackendConfig): Promise<FastifyInstance> 
 
   // Routes
   await app.register(vitalSigns);
+  await app.register(theVoidRoute);
 
   // The last line of defence between our errors and the outside world
   app.setErrorHandler(facePalm);

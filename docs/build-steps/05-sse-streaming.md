@@ -1,6 +1,6 @@
 # Step 05: SSE Streaming (the-void.ts)
 
-**Status:** not-started
+**Status:** complete
 **Depends on:** Step 03, Step 04
 **Estimated scope:** ~6 files
 
