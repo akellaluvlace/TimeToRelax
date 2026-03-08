@@ -446,43 +446,6 @@ describe('therapy-fund', () => {
 });
 ```
 
-### README Easter Eggs
-
-The README.md should include:
-
-```markdown
-## Requirements
-
-- An Anthropic API key (you already have one, let's not pretend)
-- A GitHub account (see above)
-- A phone (any phone made after 2020, we're not picky)
-- A commute, a park bench, or any location your therapist would disapprove of
-- The inability to stop working (you wouldn't be here otherwise)
-
-## Installation
-
-\`\`\`bash
-# Step 1: Accept your fate
-npm install
-
-# Step 2: Configure your keys (see .env.example)
-cp .env.example .env
-
-# Step 3: There is no step 3. You're already coding on the bus.
-\`\`\`
-
-## Contributing
-
-PRs welcome. If your function names are boring, we'll ask you to rename them.
-If your error messages sound like they were written by a Fortune 500 company, we'll reject the PR.
-If your code is clean, well-tested, and makes us laugh, you're in.
-
-## License
-
-MIT. Do whatever you want. We're not your manager.
-(Although if you fork this and remove the personality, that's technically legal but morally wrong.)
-```
-
 ### The Line: Funny vs. Confusing
 
 The cynical naming MUST still be self-documenting. A developer who has never seen this codebase should understand what a function does from its name + JSDoc in under 5 seconds. If the joke obscures the purpose, the joke loses.
@@ -506,14 +469,6 @@ When starting work:
 2. Pick the next not-started step whose dependencies are complete
 3. Update the step's status to `in-progress` and log the session
 4. When done, update step status to `complete` and log completion date
-
-### Source Documents
-
-| Document | Purpose |
-|---|---|
-| `timetorelax-spec-v2.2.md` | Product spec, architecture, 4-week timeline |
-| `CLAUDE.md` | Operating manual, coding standards, personality rules |
-| `timetorelax-landing.md` | Landing page copy, Grok system prompt, design specs |
 
 ### Runtime Logging
 
@@ -642,31 +597,6 @@ npx expo export --platform android --dry-run
 - Mock external services (Deepgram, Agent SDK, E2B) at the service boundary
 - Test personality templates: ensure all agent states have at least 2 template options
 
-```typescript
-// Example: personality engine test
-describe("PersonalityEngine", () => {
-  it("returns a template for every known agent state", () => {
-    const states = ["session_start", "build_success", "build_failed", "push_complete"];
-    states.forEach(state => {
-      const response = getPersonalityResponse(state);
-      expect(response).toBeDefined();
-      expect(response.length).toBeGreaterThan(0);
-      expect(response.length).toBeLessThan(200); // ~15sec audio limit
-    });
-  });
-
-  it("never returns corporate language", () => {
-    const banned = ["apologize", "inconvenience", "patience", "oops", "uh oh"];
-    const allTemplates = getAllTemplates();
-    allTemplates.forEach(t => {
-      banned.forEach(word => {
-        expect(t.toLowerCase()).not.toContain(word);
-      });
-    });
-  });
-});
-```
-
 ### Integration Tests
 - Test the full request cycle: API route -> service -> mock external -> response
 - Use Fastify's `inject()` for HTTP testing without starting a server
@@ -688,156 +618,24 @@ describe("PersonalityEngine", () => {
 
 ## Tool & Plugin Configuration
 
-### MCP Servers (for Claude Code development)
-
-When developing this project with Claude Code, these MCP servers are useful:
-
-```json
-{
-  "mcpServers": {
-    "filesystem": {
-      "command": "npx",
-      "args": ["-y", "@anthropic-ai/mcp-server-filesystem", "/path/to/timetorelax"]
-    },
-    "github": {
-      "command": "npx",
-      "args": ["-y", "@anthropic-ai/mcp-server-github"],
-      "env": { "GITHUB_TOKEN": "${GITHUB_TOKEN}" }
-    }
-  }
-}
-```
-
-### ESLint Configuration
-
-```json
-{
-  "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/strict-type-checked",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-    "prettier"
-  ],
-  "rules": {
-    "@typescript-eslint/no-explicit-any": "error",
-    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
-    "@typescript-eslint/explicit-function-return-type": ["warn", { "allowExpressions": true }],
-    "no-console": ["warn", { "allow": ["warn", "error"] }],
-    "react/react-in-jsx-scope": "off",
-    "react-hooks/exhaustive-deps": "error"
-  }
-}
-```
-
-### Prettier Configuration
-
-```json
-{
-  "semi": true,
-  "singleQuote": true,
-  "trailingComma": "all",
-  "printWidth": 100,
-  "tabWidth": 2,
-  "arrowParens": "always"
-}
-```
-
-### TypeScript Configuration (base)
-
-```json
-{
-  "compilerOptions": {
-    "strict": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
-    "exactOptionalPropertyTypes": false,
-    "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
-    "moduleResolution": "bundler",
-    "target": "ES2022",
-    "lib": ["ES2022"],
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  }
-}
-```
+ESLint, Prettier, and TypeScript configs live in their respective config files at the repo root and in each app. Key rules enforced:
+- `@typescript-eslint/no-explicit-any: "error"`, `no-console: "warn"`, `react-hooks/exhaustive-deps: "error"`
+- Prettier: single quotes, trailing commas, 100 print width, 2-space tabs
+- TypeScript: `strict: true`, `noUncheckedIndexedAccess: true`, `moduleResolution: "bundler"`, `target: "ES2022"`
 
 ---
 
 ## Iteration Protocol
 
-### Feature Development Flow
-
-```
-1. SCOPE    -->  Define what "done" looks like in one sentence
-2. TYPES    -->  Write interfaces and types first
-3. STUB     -->  Create files with function signatures, no implementation
-4. TEST     -->  Write failing tests for the core logic
-5. BUILD    -->  Implement until tests pass
-6. WIRE     -->  Connect to UI/API/services
-7. POLISH   -->  Error states, loading states, personality copy
-8. REVIEW   -->  Run PR review checklist
-9. SHIP     -->  Merge, deploy, verify in staging
-```
-
-### Bug Fix Flow
-
-```
-1. REPRODUCE  -->  Confirm the bug exists. Write a failing test.
-2. DIAGNOSE   -->  Trace the root cause. Don't fix symptoms.
-3. FIX        -->  Minimal change that fixes the root cause.
-4. VERIFY     -->  Test passes. Manual verification on device.
-5. REVIEW     -->  Check for regressions in adjacent functionality.
-```
-
-### Refactor Flow
-
-```
-1. JUSTIFY    -->  Why refactor? Performance? Readability? New requirement?
-2. BASELINE   -->  Ensure all existing tests pass before touching anything.
-3. REFACTOR   -->  Change structure. Keep behavior identical.
-4. VERIFY     -->  All existing tests still pass. No behavior change.
-5. IMPROVE    -->  Now add new tests, new capabilities on clean foundation.
-```
+- **Features**: Scope -> Types -> Stub -> Test -> Build -> Wire -> Polish -> Review -> Ship
+- **Bugs**: Reproduce (failing test) -> Diagnose root cause -> Minimal fix -> Verify -> Review
+- **Refactors**: Justify -> Baseline (tests pass) -> Refactor (keep behavior) -> Verify -> Improve
 
 ---
 
 ## Environment Variables
 
-### Backend (.env)
-
-```
-# Required
-ANTHROPIC_API_KEY=sk-ant-...          # For Haiku personality calls (our key)
-DEEPGRAM_API_KEY=...                  # Our Deepgram key (server-side only)
-E2B_API_KEY=...                       # E2B sandbox provisioning
-GITHUB_CLIENT_ID=...                  # GitHub OAuth app
-GITHUB_CLIENT_SECRET=...              # GitHub OAuth app
-
-# Optional
-GROK_API_KEY=...                      # For testing Grok integration
-NODE_ENV=development|production
-PORT=3000
-LOG_LEVEL=info|debug
-
-# Rate limiting
-MAX_CONCURRENT_SESSIONS_PER_USER=3
-SESSION_TTL_MS=900000                 # 15 minutes
-SSE_BUFFER_SIZE=100
-```
-
-### Mobile (.env)
-
-```
-# Required
-API_BASE_URL=https://api.timetorelax.app
-GITHUB_OAUTH_CLIENT_ID=...
-
-# Optional (for development)
-API_BASE_URL_DEV=http://localhost:3000
-```
+See `.env.example` files in `apps/backend/` and `apps/mobile/` for required/optional vars.
 
 **Never store user API keys in environment variables.** They live in expo-secure-store on device and are sent per-request to the backend.
 

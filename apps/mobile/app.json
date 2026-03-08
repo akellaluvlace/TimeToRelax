@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "TimeToRelax",
+    "slug": "timetorelax",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "scheme": "timetorelax",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#06060a"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "app.timetorelax.mobile"
+    },
+    "android": {
+      "package": "app.timetorelax.mobile",
+      "adaptiveIcon": {
+        "backgroundColor": "#06060a",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router"
+    ]
+  }
+}

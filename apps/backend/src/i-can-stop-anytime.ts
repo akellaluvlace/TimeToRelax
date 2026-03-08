@@ -3,6 +3,10 @@
 
 import { buildApp } from './app.js';
 import { loadConfig } from './config.js';
+import { openChapter } from './services/dear-diary.js';
+
+// The entry point gets its own chapter because it deserves to be seen
+const log = openChapter('startup');
 
 async function main(): Promise<void> {
   const config = loadConfig();
@@ -10,7 +14,7 @@ async function main(): Promise<void> {
 
   // Clean shutdown. Walk away slowly.
   const shutdown = async (signal: string): Promise<void> => {
-    app.log.info(`Received ${signal}. Shutting down gracefully.`);
+    log.info(`Received ${signal}. Shutting down gracefully.`);
     await app.close();
     process.exit(0);
   };
@@ -20,9 +24,9 @@ async function main(): Promise<void> {
 
   try {
     const address = await app.listen({ port: config.port, host: config.host });
-    app.log.info(`Server listening at ${address}. You could have been reading.`);
+    log.info(`Server listening at ${address}. You could have been reading.`);
   } catch (err) {
-    app.log.fatal(err, 'Failed to start server. This is not fine.');
+    log.fatal(err, 'Failed to start server. This is not fine.');
     process.exit(1);
   }
 }

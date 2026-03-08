@@ -1,6 +1,6 @@
 # Step 04: Runtime Logger (dear-diary.ts / confessional.ts)
 
-**Status:** not-started
+**Status:** complete
 **Depends on:** Step 03 (backend), Step 07 (mobile, can be done later)
 **Estimated scope:** ~8 files
 

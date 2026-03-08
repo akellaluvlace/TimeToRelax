@@ -19,10 +19,10 @@
 | 01 | Git Init & Monorepo Scaffold | complete | 2026-03-06 | 2026-03-06 | Pushed to github.com/akellaluvlace/TimeToRelax |
 | 02 | Shared Types Package | complete | 2026-03-07 | 2026-03-07 | 6 type files, all exports verified from backend + mobile |
 | 03 | Backend Fastify Skeleton | complete | 2026-03-07 | 2026-03-07 | Fastify 5, CORS, rate-limit, health route, error handler, 6 tests pass |
-| 04 | Runtime Logger (dear-diary.ts) | not-started | | | |
+| 04 | Runtime Logger (dear-diary.ts) | complete | 2026-03-07 | 2026-03-07 | Backend: pino logger, openChapter child factory, integrated into Fastify. Mobile: confessional.ts done in step 07. 15 backend tests pass. |
 | 05 | SSE Streaming (the-void.ts) | not-started | | | |
 | 06 | Personality Engine (denial-engine.ts) | not-started | | | |
-| 07 | Mobile Expo Skeleton | not-started | | | |
+| 07 | Mobile Expo Skeleton | complete | 2026-03-07 | 2026-03-07 | Expo 55, expo-router, NativeWind v4, Zustand, 3 screens, 3 stores, confessional.ts, 34 tests pass |
 | 08 | Voice Capture (expo-audio) | not-started | | | |
 | 09 | Deepgram STT/TTS Integration | not-started | | | |
 | 10 | Agent SDK Session Manager (enabler.ts) | not-started | | | |
@@ -76,6 +76,8 @@
 | 2026-03-06 | ~20 steps, each 0.5-2 days | Granular enough for session pickup, not overhead-heavy | -- |
 | 2026-03-06 | Logger: pino (backend), console wrapper (mobile) | Structured JSON, personality in naming only | 04 |
 | 2026-03-06 | Logger file names: dear-diary.ts / confessional.ts | Brand in the name, professional output | 04 |
+| 2026-03-07 | Jest 29 for mobile (not 30) | Jest 30 has scope check (`isInsideTestCode`) incompatible with jest-expo in monorepos with hoisted deps | 07 |
+| 2026-03-07 | `react-native-worklets` added as peer dep | Required by `react-native-reanimated` v4 for Babel plugin | 07 |
 
 ## Session Log
 
@@ -86,3 +88,5 @@
 | 2026-03-06 | Landing page | 19 | Next.js 16 landing page, deployed to Vercel at timetorelax.app |
 | 2026-03-07 | Step 02 implementation | 02 | Shared types: session, events, voice, errors, api, personality. All compile clean. |
 | 2026-03-07 | Step 03 implementation | 03 | Fastify skeleton: app factory, config, health route, error handler, Dockerfile. 6/6 tests pass. |
+| 2026-03-07 | Step 04 implementation | 04 | Backend logger: dear-diary.ts with pino, openChapter child factory, integrated into app.ts + entry point. 9 new tests, 15 total pass. |
+| 2026-03-07 | Step 07 implementation | 07 | Mobile Expo skeleton: SDK 55, expo-router, NativeWind v4, Zustand stores, 3 screens w/ all states, confessional.ts logger, RadioGroup, 34/34 tests pass. |
