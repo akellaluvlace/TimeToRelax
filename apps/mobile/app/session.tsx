@@ -1,6 +1,8 @@
 // session.tsx -- The session screen.
 // Where you watch your code being written by an agent
 // while you sit on a bus pretending this is normal.
+// Now with tabs, diffs, and a file preview. Like a real IDE.
+// Except it's on your phone. On a bus. At 11pm.
 
 import type React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
@@ -8,19 +10,27 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import { EmptyState } from '@/components/EmptyState';
 import { ErrorState } from '@/components/ErrorState';
 import { LoadingState } from '@/components/LoadingState';
+import { SessionView } from '@/components/SessionView';
+import { openBooth } from '@/services/confessional';
 import { useSessionStore } from '@/store/session-store';
-import { useVoiceStore } from '@/store/voice-store';
+
+const log = openBooth('session-screen');
+
+// TODO(nikita): Make this configurable from settings or env.
+// Hardcoded for now because Railway gives us one URL and we're keeping it simple.
+const BACKEND_URL = 'https://api.timetorelax.app';
 
 /**
  * Session screen. The main event.
- * Shows the agent's progress, voice controls, and the growing
- * list of files that are being modified without a laptop in sight.
+ * Shows the SessionView with tabbed navigation (Diff, Files, Preview),
+ * voice controls, and the growing list of files being modified
+ * without a laptop in sight. Handles loading, error, and empty states
+ * because every screen must earn its keep.
  *
  * @returns The session screen component
  */
 export default function SessionScreen(): React.ReactNode {
   const { currentSession, phase, isLoading, lastError } = useSessionStore();
-  const { voiceState, isMicActive, lastTranscript } = useVoiceStore();
 
   // Error state. Something broke during the session.
   if (lastError) {
@@ -44,72 +54,43 @@ export default function SessionScreen(): React.ReactNode {
     );
   }
 
-  // Active session. Show the grief cycle in action.
+  // Active session. Show the tabbed view with diffs, files, and preview.
   return (
-    <View className="flex-1 bg-abyss px-6 pt-6">
-      {/* Phase indicator */}
-      <View className="mb-6 rounded-md border border-terminal-dim p-4">
-        <Text className="font-mono text-xs uppercase text-terminal-dim">
-          Current Phase
-        </Text>
-        <Text className="mt-1 font-mono text-lg text-toxic-green">
-          {phase}
-        </Text>
-        <Text className="mt-2 font-mono text-xs text-terminal-dim">
-          {currentSession.turnsUsed} turns used | {currentSession.filesChanged} files changed
-        </Text>
-      </View>
-
-      {/* Voice status */}
-      <View className="mb-6 rounded-md border border-terminal-dim p-4">
-        <Text className="font-mono text-xs uppercase text-terminal-dim">
-          Voice
-        </Text>
-        <Text className="mt-1 font-mono text-sm text-terminal-text">
-          {voiceState} {isMicActive ? '(mic hot)' : ''}
-        </Text>
-        {lastTranscript ? (
-          <Text className="mt-2 font-mono text-xs text-terminal-dim">
-            Last: &quot;{lastTranscript}&quot;
+    <View className="flex-1 bg-abyss">
+      {/* Phase indicator -- compact header */}
+      <View className="flex-row items-center justify-between border-b border-terminal-dim px-4 py-3">
+        <View>
+          <Text className="font-mono text-xs uppercase text-terminal-dim">
+            Phase
           </Text>
-        ) : null}
+          <Text className="font-mono text-sm text-toxic-green">
+            {phase}
+          </Text>
+        </View>
+        <View className="items-end">
+          <Text className="font-mono text-xs text-terminal-dim">
+            {currentSession.turnsUsed} turns | {currentSession.filesChanged} files
+          </Text>
+          <TouchableOpacity
+            onPress={() => {
+              log.info('User ended session from header');
+              useSessionStore.getState().releaseYouFromYourself();
+            }}
+            accessibilityLabel="End session"
+            accessibilityRole="button"
+          >
+            <Text className="mt-1 font-mono text-xs text-danger-red">
+              End session
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
 
-      {/* Voice control placeholder */}
-      <TouchableOpacity
-        className={`items-center rounded-full border px-6 py-4 ${
-          isMicActive ? 'border-danger-red' : 'border-toxic-green'
-        }`}
-        onPress={() => {
-          if (isMicActive) {
-            useVoiceStore.getState().mercifully();
-          } else {
-            useVoiceStore.getState().openMouth();
-          }
-        }}
-        accessibilityLabel={isMicActive ? 'Stop recording' : 'Start recording'}
-        accessibilityRole="button"
-      >
-        <Text
-          className={`font-mono text-base ${
-            isMicActive ? 'text-danger-red' : 'text-toxic-green'
-          }`}
-        >
-          {isMicActive ? 'Shut it' : 'Speak'}
-        </Text>
-      </TouchableOpacity>
-
-      {/* End session */}
-      <TouchableOpacity
-        className="mt-6 items-center rounded-md border border-danger-red px-6 py-3"
-        onPress={() => useSessionStore.getState().releaseYouFromYourself()}
-        accessibilityLabel="End session"
-        accessibilityRole="button"
-      >
-        <Text className="font-mono text-sm text-danger-red">
-          End session
-        </Text>
-      </TouchableOpacity>
+      {/* Tabbed session view with diff, files, preview, and mic */}
+      <SessionView
+        sessionId={currentSession.id}
+        backendUrl={BACKEND_URL}
+      />
     </View>
   );
 }

@@ -50,6 +50,21 @@ export default function RootLayout(): React.ReactNode {
             headerShown: true,
           }}
         />
+        <Stack.Screen
+          name="new-project"
+          options={{
+            title: '// New Project',
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="onboarding"
+          options={{
+            title: '// Rock Bottom',
+            headerShown: false,
+            animation: 'fade',
+          }}
+        />
       </Stack>
     </View>
   );

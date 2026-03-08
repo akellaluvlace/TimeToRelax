@@ -7,6 +7,14 @@ export interface BackendConfig {
   host: string;
   nodeEnv: 'development' | 'production';
   logLevel: string;
+  /** GitHub OAuth App client ID. Optional because dev might not have one. */
+  githubClientId?: string;
+  /** GitHub OAuth App client secret. Optional because dev might not have one. */
+  githubClientSecret?: string;
+  /** Deepgram API key. Optional because dev might not have ears. */
+  deepgramApiKey?: string;
+  /** E2B API key for sandbox lifecycle. Optional because dev may not have one yet. */
+  e2bApiKey?: string;
 }
 
 /**
@@ -25,6 +33,10 @@ export function loadConfig(): BackendConfig {
     host: process.env['HOST'] ?? '0.0.0.0',
     nodeEnv,
     logLevel: process.env['LOG_LEVEL'] ?? (nodeEnv === 'production' ? 'info' : 'debug'),
+    githubClientId: process.env['GITHUB_CLIENT_ID'],
+    githubClientSecret: process.env['GITHUB_CLIENT_SECRET'],
+    deepgramApiKey: process.env['DEEPGRAM_API_KEY'],
+    e2bApiKey: process.env['E2B_API_KEY'],
   };
 }
 

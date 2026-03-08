@@ -21,6 +21,8 @@ interface SettingsStore {
   hasAnthropicKey: boolean;
   /** Whether the user has a GitHub token configured. */
   hasGithubToken: boolean;
+  /** Whether the user has an xAI API key configured. The upgrade path. */
+  hasXaiKey: boolean;
 
   /**
    * Updates the voice provider preference.
@@ -51,6 +53,12 @@ interface SettingsStore {
    * The ticket to ship from inappropriate locations.
    */
   acknowledgeGithubToken: (hasToken: boolean) => void;
+
+  /**
+   * Updates whether we have an xAI key stored.
+   * The entry fee for the Grok voice upgrade. Choose chaos.
+   */
+  acknowledgeXaiKey: (hasKey: boolean) => void;
 }
 
 /**
@@ -63,6 +71,7 @@ export const useSettingsStore = create<SettingsStore>((set) => ({
   onboardingComplete: false,
   hasAnthropicKey: false,
   hasGithubToken: false,
+  hasXaiKey: false,
 
   pickYourPoison: (provider: VoiceProvider): void => {
     log.info('Voice provider changed', { provider });
@@ -87,5 +96,10 @@ export const useSettingsStore = create<SettingsStore>((set) => ({
   acknowledgeGithubToken: (hasToken: boolean): void => {
     log.debug('GitHub token status', { hasToken });
     set({ hasGithubToken: hasToken });
+  },
+
+  acknowledgeXaiKey: (hasKey: boolean): void => {
+    log.debug('xAI key status', { hasKey });
+    set({ hasXaiKey: hasKey });
   },
 }));

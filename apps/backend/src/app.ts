@@ -9,6 +9,13 @@ import sensible from '@fastify/sensible';
 import { facePalm } from './middleware/face-palm.js';
 import vitalSigns from './routes/vital-signs.js';
 import theVoidRoute from './routes/the-void-route.js';
+import sessionRoutes from './routes/session-routes.js';
+import githubRoutes from './routes/github-routes.js';
+import voiceRoutes from './routes/voice-routes.js';
+import newProjectRoutes from './routes/new-project-routes.js';
+import existingProjectRoutes from './routes/existing-project-routes.js';
+import shipRoutes from './routes/ship-routes.js';
+import grokRoutes from './routes/grok-routes.js';
 import type { BackendConfig } from './config.js';
 import { spawnDiary } from './services/dear-diary.js';
 
@@ -41,6 +48,13 @@ export async function buildApp(config: BackendConfig): Promise<FastifyInstance> 
   // Routes
   await app.register(vitalSigns);
   await app.register(theVoidRoute);
+  await app.register(sessionRoutes);
+  await app.register(githubRoutes);
+  await app.register(voiceRoutes);
+  await app.register(newProjectRoutes);
+  await app.register(existingProjectRoutes);
+  await app.register(shipRoutes);
+  await app.register(grokRoutes);
 
   // The last line of defence between our errors and the outside world
   app.setErrorHandler(facePalm);

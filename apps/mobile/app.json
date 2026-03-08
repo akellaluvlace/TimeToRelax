@@ -18,6 +18,9 @@
     },
     "android": {
       "package": "app.timetorelax.mobile",
+      "permissions": [
+        "RECORD_AUDIO"
+      ],
       "adaptiveIcon": {
         "backgroundColor": "#06060a",
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -30,7 +33,9 @@
       "bundler": "metro"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-audio",
+      "expo-secure-store"
     ]
   }
 }

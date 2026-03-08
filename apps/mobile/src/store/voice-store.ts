@@ -22,6 +22,8 @@ interface VoiceStore {
   isMicActive: boolean;
   /** The last error from the voice system. */
   lastError: string | null;
+  /** URI of the last recording. The evidence. */
+  recordingUri: string | null;
 
   /**
    * Turns on the voices in the app.
@@ -59,6 +61,12 @@ interface VoiceStore {
    * Shocking, truly.
    */
   recordStaticNoise: (error: string | null) => void;
+
+  /**
+   * Stashes the URI of the last recording.
+   * The audio file, not a web address. Though that would be funnier.
+   */
+  stashEvidence: (uri: string | null) => void;
 }
 
 /**
@@ -72,6 +80,7 @@ export const useVoiceStore = create<VoiceStore>((set) => ({
   lastTranscript: null,
   isMicActive: false,
   lastError: null,
+  recordingUri: null,
 
   enableTheVoices: (provider: VoiceProvider): void => {
     log.info('Voice provider set', { provider });
@@ -103,5 +112,10 @@ export const useVoiceStore = create<VoiceStore>((set) => ({
       log.error('Voice error', { error });
     }
     set({ lastError: error, voiceState: error ? 'unavailable' : 'idle' });
+  },
+
+  stashEvidence: (uri: string | null): void => {
+    log.debug('Recording URI stashed', { uri });
+    set({ recordingUri: uri });
   },
 }));

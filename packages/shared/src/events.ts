@@ -32,6 +32,10 @@ export const AgentEventType = {
   SESSION_TIMEOUT: 'session_timeout',
   /** Voice response text for TTS. */
   VOICE_RESPONSE: 'voice_response',
+  /** Rate limited. Waiting it out. Use the time to reflect. */
+  RATE_LIMITED: 'rate_limited',
+  /** Rate limit cleared. Back to business. */
+  RATE_LIMIT_CLEARED: 'rate_limit_cleared',
 } as const;
 
 export type AgentEventType = (typeof AgentEventType)[keyof typeof AgentEventType];
@@ -90,6 +94,20 @@ export interface VoiceResponseData {
   text: string;
 }
 
+/** Data payload for RATE_LIMITED events. */
+export interface RateLimitedData {
+  /** How many ms remain until the rate limit clears. */
+  remainingMs: number;
+  /** The original retry-after duration in ms. */
+  retryAfterMs: number;
+}
+
+/** Data payload for RATE_LIMIT_CLEARED events. */
+export interface RateLimitClearedData {
+  /** How long the sentence lasted, in ms. */
+  durationMs: number;
+}
+
 /**
  * A single event from the agent, streamed via SSE.
  * Each one is a dispatch from the front lines of whatever
@@ -111,5 +129,7 @@ export interface AgentEvent {
     | AgentErrorData
     | PushCompleteData
     | VoiceResponseData
+    | RateLimitedData
+    | RateLimitClearedData
     | Record<string, unknown>;
 }

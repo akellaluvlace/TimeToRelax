@@ -3,6 +3,7 @@
 // The last chance to close it and go outside.
 
 import type React from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'expo-router';
 import { Text, TouchableOpacity, View } from 'react-native';
 
@@ -15,13 +16,23 @@ import { useSettingsStore } from '@/store/settings-store';
 /**
  * Home screen. The launchpad for your coding-on-the-bus adventures.
  * Shows current session status or an invitation to start one.
+ * Redirects to onboarding if the user hasn't accepted their fate yet.
  *
  * @returns The home screen component
  */
 export default function HomeScreen(): React.ReactNode {
   const router = useRouter();
   const { currentSession, phase, isLoading, lastError } = useSessionStore();
-  const { hasAnthropicKey } = useSettingsStore();
+  const { hasAnthropicKey, onboardingComplete } = useSettingsStore();
+
+  // First-time users get sent to rock bottom (onboarding).
+  // router.replace so the back button doesn't bring them here
+  // before they've handed over their keys.
+  useEffect(() => {
+    if (!onboardingComplete) {
+      router.replace('/onboarding');
+    }
+  }, [onboardingComplete, router]);
 
   // Something went wrong. Show it.
   if (lastError) {

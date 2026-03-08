@@ -19,6 +19,8 @@ export {
   type AgentErrorData,
   type PushCompleteData,
   type VoiceResponseData,
+  type RateLimitedData,
+  type RateLimitClearedData,
   type AgentEvent,
 } from './events.js';
 

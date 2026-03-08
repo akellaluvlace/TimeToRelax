@@ -23,19 +23,19 @@
 | 05 | SSE Streaming (the-void.ts) | complete | 2026-03-08 | 2026-03-08 | the-void.ts service + route, 28 new tests, 43 total pass |
 | 06 | Personality Engine (denial-engine.ts) | complete | 2026-03-08 | 2026-03-08 | denial-engine.ts, templates.ts (17 states, 3+ each), banned-words.ts, consultTheOracle stub. 23 new tests, 38 total pass. |
 | 07 | Mobile Expo Skeleton | complete | 2026-03-07 | 2026-03-07 | Expo 55, expo-router, NativeWind v4, Zustand, 3 screens, 3 stores, confessional.ts, 34 tests pass |
-| 08 | Voice Capture (expo-audio) | not-started | | | |
-| 09 | Deepgram STT/TTS Integration | not-started | | | |
-| 10 | Agent SDK Session Manager (enabler.ts) | not-started | | | |
-| 11 | E2B Sandbox Lifecycle (grass-toucher.ts) | not-started | | | |
-| 12 | New Project Mode (end-to-end) | not-started | | | |
-| 13 | GitHub OAuth & Repo Connect | not-started | | | |
-| 14 | Existing Project Mode | not-started | | | |
-| 15 | Diff View & File Tree UI | not-started | | | |
-| 16 | Ship Flow (commit, push, PR) | not-started | | | |
-| 17 | Session Resilience & Reconnection | not-started | | | |
-| 18 | Grok Voice Upgrade Path | not-started | | | |
+| 08 | Voice Capture (expo-audio) | complete | 2026-03-08 | 2026-03-08 | useVoice hook, MicButton, expo-audio PCM 16kHz, 23 tests |
+| 09 | Deepgram STT/TTS Integration | complete | 2026-03-08 | 2026-03-08 | mouth-and-ears.ts (STT/TTS), voice-routes.ts, voice-pipeline.ts (mobile), 29 tests |
+| 10 | Agent SDK Session Manager (enabler.ts) | complete | 2026-03-08 | 2026-03-08 | enabler.ts orchestrator, regret-tracker.ts session store with TTL, session-routes.ts (4 routes), mock SDK factory, 51 new tests, 117 total pass |
+| 11 | E2B Sandbox Lifecycle (grass-toucher.ts) | complete | 2026-03-08 | 2026-03-08 | grass-toucher.ts (build/poke/destroy), sandbox-templates.ts, mock factory, 24 tests |
+| 12 | New Project Mode (end-to-end) | complete | 2026-03-08 | 2026-03-08 | new-project-routes.ts, useAgentSession hook, FileTree/LivePreview/VoiceBrief components, 36 tests |
+| 13 | GitHub OAuth & Repo Connect | complete | 2026-03-08 | 2026-03-08 | no-laptop-no-problem.ts, github-routes.ts, hide-the-evidence.ts (mobile), 22 tests |
+| 14 | Existing Project Mode | complete | 2026-03-08 | 2026-03-08 | archaeologist.ts, existing-project-routes.ts, useRepoSession hook, SetupProgress, 20 tests |
+| 15 | Diff View & File Tree UI | complete | 2026-03-08 | 2026-03-08 | DiffView, DiffFile, FilePreview, SessionView, useDiffParser, 25 tests |
+| 16 | Ship Flow (commit, push, PR) | complete | 2026-03-08 | 2026-03-08 | ship-routes.ts, useShipFlow hook, ShipBar, noTakebacksies/shipFromInappropriateLocation/makeItSomeoneElsesProblem, 31 tests |
+| 17 | Session Resilience & Reconnection | complete | 2026-03-08 | 2026-03-08 | intervention.ts, sleep-is-optional.ts, ConnectionStatus, useVoiceReconnect, 38 tests |
+| 18 | Grok Voice Upgrade Path | complete | 2026-03-08 | 2026-03-08 | the-upgrade.ts, grok-routes.ts, grok-voice.ts (mobile), useGrokVoice hook, 30 tests |
 | 19 | Landing Page (timetorelax.app) | complete | 2026-03-06 | 2026-03-06 | Next.js 16 on Vercel, timetorelax.app |
-| 20 | Polish, Onboarding & Launch Prep | not-started | | | |
+| 20 | Polish, Onboarding & Launch Prep | complete | 2026-03-08 | 2026-03-08 | Onboarding flow, SessionHistory, ProjectSwitcher, 28 tests. 277 backend + 193 mobile = 470 total tests |
 
 ## Dependency Graph
 
@@ -78,6 +78,8 @@
 | 2026-03-06 | Logger file names: dear-diary.ts / confessional.ts | Brand in the name, professional output | 04 |
 | 2026-03-07 | Jest 29 for mobile (not 30) | Jest 30 has scope check (`isInsideTestCode`) incompatible with jest-expo in monorepos with hoisted deps | 07 |
 | 2026-03-07 | `react-native-worklets` added as peer dep | Required by `react-native-reanimated` v4 for Babel plugin | 07 |
+| 2026-03-08 | Pluggable SessionFactory for Agent SDK | SDK not published yet; mock factory allows end-to-end testing. setSessionFactory() swaps in the real SDK later. | 10 |
+| 2026-03-08 | Separate SDK session map from regret-tracker | SDK session handle is an implementation detail; SessionState is the contract. Keeps concerns clean. | 10 |
 
 ## Session Log
 
@@ -92,3 +94,5 @@
 | 2026-03-07 | Step 07 implementation | 07 | Mobile Expo skeleton: SDK 55, expo-router, NativeWind v4, Zustand stores, 3 screens w/ all states, confessional.ts logger, RadioGroup, 34/34 tests pass. |
 | 2026-03-08 | Step 05 implementation | 05 | SSE streaming: the-void.ts service (ring buffer, reconnection replay, multi-client), the-void-route.ts (GET /session/:id/stream), 28 new tests, 43 total pass. |
 | 2026-03-08 | Step 06 implementation | 06 | Personality engine: denial-engine.ts (craftDisapproval + consultTheOracle stub), templates.ts (17 states, 3+ per state), banned-words.ts, ERROR_RECOVERY added to shared types. 23 new tests, 38 total pass. |
+| 2026-03-08 | Step 10 implementation | 10 | Agent SDK session manager: enabler.ts (spawn/instruct/resume/terminate), regret-tracker.ts (TTL store, shame threshold), session-routes.ts (4 Fastify routes), mock SDK factory. 51 new tests, 117 total pass. |
+| 2026-03-08 | Steps 08-09, 11-18, 20 | 08-18, 20 | Full build blitz: voice capture, Deepgram, E2B, new/existing project modes, GitHub OAuth, diff view, ship flow, resilience, Grok voice, onboarding. 277 backend + 193 mobile = 470 total tests. |

@@ -37,6 +37,7 @@ export default function SettingsScreen(): React.ReactNode {
     onboardingComplete,
     hasAnthropicKey,
     hasGithubToken,
+    hasXaiKey,
     pickYourPoison,
     chooseYourFighter,
   } = useSettingsStore();
@@ -76,6 +77,13 @@ export default function SettingsScreen(): React.ReactNode {
         buttonLabel={hasGithubToken ? 'Change token' : 'Add token'}
         onPress={() => useSettingsStore.getState().acknowledgeGithubToken(!hasGithubToken)}
         accessibilityLabel="Configure GitHub token"
+      />
+      <KeyCard
+        title="xAI API Key"
+        description={hasXaiKey ? 'Configured. Maximum chaos enabled.' : 'Not configured. Grok Voice needs this to judge you properly.'}
+        buttonLabel={hasXaiKey ? 'Change key' : 'Add key'}
+        onPress={() => useSettingsStore.getState().acknowledgeXaiKey(!hasXaiKey)}
+        accessibilityLabel="Configure xAI API key"
       />
 
       {/* Voice Provider */}

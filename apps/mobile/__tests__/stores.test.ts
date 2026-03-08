@@ -94,6 +94,7 @@ describe('voice-store', () => {
       lastTranscript: null,
       isMicActive: false,
       lastError: null,
+      recordingUri: null,
     });
   });
 
@@ -135,6 +136,17 @@ describe('voice-store', () => {
     expect(state.lastError).toBe('mic failed');
     expect(state.voiceState).toBe('unavailable');
   });
+
+  it('should stash the recording evidence (URI)', () => {
+    useVoiceStore.getState().stashEvidence('file:///tmp/recording.m4a');
+    expect(useVoiceStore.getState().recordingUri).toBe('file:///tmp/recording.m4a');
+  });
+
+  it('should clear the recording evidence when set to null', () => {
+    useVoiceStore.getState().stashEvidence('file:///tmp/recording.m4a');
+    useVoiceStore.getState().stashEvidence(null);
+    expect(useVoiceStore.getState().recordingUri).toBeNull();
+  });
 });
 
 describe('settings-store', () => {
@@ -145,6 +157,7 @@ describe('settings-store', () => {
       onboardingComplete: false,
       hasAnthropicKey: false,
       hasGithubToken: false,
+      hasXaiKey: false,
     });
   });
 
@@ -178,5 +191,10 @@ describe('settings-store', () => {
   it('should acknowledge GitHub token presence', () => {
     useSettingsStore.getState().acknowledgeGithubToken(true);
     expect(useSettingsStore.getState().hasGithubToken).toBe(true);
+  });
+
+  it('should acknowledge xAI key presence for the upgrade path', () => {
+    useSettingsStore.getState().acknowledgeXaiKey(true);
+    expect(useSettingsStore.getState().hasXaiKey).toBe(true);
   });
 });

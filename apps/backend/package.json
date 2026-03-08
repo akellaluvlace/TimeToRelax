@@ -12,10 +12,12 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "@deepgram/sdk": "^5.0.0",
     "@fastify/cors": "^11.2.0",
     "@fastify/rate-limit": "^10.3.0",
     "@fastify/sensible": "^6.0.4",
     "@timetorelax/shared": "*",
+    "e2b": "^2.14.1",
     "fastify": "^5.8.1",
     "pino": "^10.3.1"
   },
