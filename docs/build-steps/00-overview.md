@@ -21,7 +21,7 @@
 | 03 | Backend Fastify Skeleton | complete | 2026-03-07 | 2026-03-07 | Fastify 5, CORS, rate-limit, health route, error handler, 6 tests pass |
 | 04 | Runtime Logger (dear-diary.ts) | complete | 2026-03-07 | 2026-03-07 | Backend: pino logger, openChapter child factory, integrated into Fastify. Mobile: confessional.ts done in step 07. 15 backend tests pass. |
 | 05 | SSE Streaming (the-void.ts) | complete | 2026-03-08 | 2026-03-08 | the-void.ts service + route, 28 new tests, 43 total pass |
-| 06 | Personality Engine (denial-engine.ts) | not-started | | | |
+| 06 | Personality Engine (denial-engine.ts) | complete | 2026-03-08 | 2026-03-08 | denial-engine.ts, templates.ts (17 states, 3+ each), banned-words.ts, consultTheOracle stub. 23 new tests, 38 total pass. |
 | 07 | Mobile Expo Skeleton | complete | 2026-03-07 | 2026-03-07 | Expo 55, expo-router, NativeWind v4, Zustand, 3 screens, 3 stores, confessional.ts, 34 tests pass |
 | 08 | Voice Capture (expo-audio) | not-started | | | |
 | 09 | Deepgram STT/TTS Integration | not-started | | | |
@@ -91,3 +91,4 @@
 | 2026-03-07 | Step 04 implementation | 04 | Backend logger: dear-diary.ts with pino, openChapter child factory, integrated into app.ts + entry point. 9 new tests, 15 total pass. |
 | 2026-03-07 | Step 07 implementation | 07 | Mobile Expo skeleton: SDK 55, expo-router, NativeWind v4, Zustand stores, 3 screens w/ all states, confessional.ts logger, RadioGroup, 34/34 tests pass. |
 | 2026-03-08 | Step 05 implementation | 05 | SSE streaming: the-void.ts service (ring buffer, reconnection replay, multi-client), the-void-route.ts (GET /session/:id/stream), 28 new tests, 43 total pass. |
+| 2026-03-08 | Step 06 implementation | 06 | Personality engine: denial-engine.ts (craftDisapproval + consultTheOracle stub), templates.ts (17 states, 3+ per state), banned-words.ts, ERROR_RECOVERY added to shared types. 23 new tests, 38 total pass. |

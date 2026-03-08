@@ -18,6 +18,7 @@ export const PersonalityState = {
   RATE_LIMITED: 'rate_limited',
   SANDBOX_CRASH: 'sandbox_crash',
   NETWORK_LOST: 'network_lost',
+  ERROR_RECOVERY: 'error_recovery',
 } as const;
 
 export type PersonalityState = (typeof PersonalityState)[keyof typeof PersonalityState];
